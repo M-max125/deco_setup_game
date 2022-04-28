@@ -1,0 +1,257 @@
+@use 'sass:math';
+
+
+@function str-split($string, $separator) {
+  // empty array/list
+  $split-arr: ();
+  // first index of separator in string
+  $index: str-index($string, $separator);
+  // loop through string
+  @while $index != null {
+    // get the substring from the first character to the separator
+    $item: str-slice($string, 1, $index - 1);
+    // push item to array
+    $split-arr: append($split-arr, $item);
+    // remove item and separator from string
+    $string: str-slice($string, $index + 1);
+    // find new index of separator
+    $index: str-index($string, $separator);
+  }
+  // add the remaining string to list (the last item)
+  $split-arr: append($split-arr, $string);
+
+  @return $split-arr;
+}
+
+
+
+@mixin responsive($device-type : 'mobile', $orientation: '', $dev-content: false) {
+
+  @if $orientation != 'portrait' and $orientation != 'landscape' {
+
+    $orientation: '';
+
+  }
+
+  $append-delimiter: space;
+
+  $convert-size-to-em: false;
+  //$body-font-size: $base-font-size;
+
+  $orientation-query: if($orientation != '', 'and (orientation: #{$orientation})', '');
+
+  $device-groups: (
+    //  min-width | max-width | [, min-resolution, [, alias] ]
+          mobile: (
+                          (0, 420, 0, 'extrem de mic'),
+                          (320, 480, 0, 'Testat pe iPhone SE'), // --- Firefox - dev tools - 320x480
+                          (360, 640, 0, 'Galaxy S5'),
+                          (412, 732, 0, 'Nexus 6P'), // Chrome - dev tools - Nexus 6P
+                          (320, 568, 0, 'iPhone 5 | 5S | SE - 4.0"'), // Chrome - dev tools - iPhone 5
+                          (375, 667, 0, 'iPhone 6 | Others - 4.7"'), // Chrome - dev tools - iPhone 6
+                          (414, 767, 0, 'iPhone 6 Plus | Others - 5.5"'), // Chrome - dev tools - iPhone 6 Plus
+          ),
+          tablet: (
+                          (768, 1024, 0, 'iPad | XAVY L8'), // Chrome - dev tools - iPad --- Testat pe iPad si XAVY L8
+                          (1024, 1200, 0, 'iPad Pro | VDF 1100 | Others'), // Chrome - dev tools - iPad Pro
+          ),
+          mt: (
+                          (0, 420, 0, 'extrem de mic'),
+                          (320, 480, 0, 'Testat pe iPhone SE'), // --- Firefox - dev tools - 320x480
+                          (360, 640, 0, 'Galaxy S5'),
+                          (412, 732, 0, 'Nexus 6P'), // Chrome - dev tools - Nexus 6P
+                          (320, 568, 0, 'iPhone 5 | 5S | SE - 4.0"'), // Chrome - dev tools - iPhone 5
+                          (375, 667, 0, 'iPhone 6 | Others - 4.7"'), // Chrome - dev tools - iPhone 6
+                          (414, 736, 0, 'iPhone 6 Plus | Others - 5.5"'), // Chrome - dev tools - iPhone 6 Plus
+                          (415, 767, 0, 'Large Phone , Small Tablets"'), // --- Testat pe VDF 1100
+                          (768, 1024, 0, 'iPad | XAVY L8'), // Chrome - dev tools - iPad --- Testat pe iPad si XAVY L8
+                          (1024, 1200, 0, 'iPad Pro | VDF 1100 | Others'), // Chrome - dev tools - iPad Pro
+          ),
+          laptop: (
+                          (1280, 1440, 0, 'Laptop'),
+          ),
+          desktop: (
+                          (1440, 1600, 0, 'Desktop'),
+          ),
+          fullhd: (
+                          (1601, 9999, 0, 'Full HD'),
+          ),
+  );
+
+
+  $split-values: str-split($device-type, ",");
+  @each $device-type in $split-values {
+
+    @if map-has-key($device-groups, $device-type) {
+
+      $device-resolutions: map-get($device-groups, $device-type);
+
+      $min-width: 0;
+      $max-width: 0;
+
+      $media-query-combined: ();
+
+      @for $j from 1 through length($device-resolutions) {
+
+        $media-query: ();
+
+        $resolution: nth($device-resolutions, $j);
+
+        $ratio-query: '';
+        $alias-query: '';
+
+        $media-query: append($media-query, 'screen', space);
+
+        $min-width: if($convert-size-to-em == true, if(nth($resolution, 1) == 0, 0, nth($resolution, 1)/$body-font-size), nth($resolution, 1));
+        $max-width: if($convert-size-to-em == true, if(nth($resolution, 2) == 0, 0, nth($resolution, 2)/$body-font-size), nth($resolution, 2));
+        $mq-unit: if($convert-size-to-em == true, 'em', 'px');
+
+        $min-width-or-min-device-width: if($device-type == 'tablet', 'min-device-width', 'min-width');
+        $max-width-or-max-device-width: if($device-type == 'tablet', 'max-device-width', 'max-width');
+
+        $min-width-append: if($min-width > 0, '(#{$min-width-or-min-device-width}: #{$min-width}#{$mq-unit})', '');
+        $max-width-append: if($max-width > 0, '(#{$max-width-or-max-device-width}: #{$max-width}#{$mq-unit})', '');
+
+        @if $min-width > 0 {
+          $media-query: append($media-query, 'and #{$min-width-append}', $append-delimiter);
+        }
+        @if $max-width > 0 {
+          $media-query: append($media-query, 'and #{$max-width-append}', $append-delimiter);
+        }
+
+        $media-query: append($media-query, $orientation-query, $append-delimiter);
+
+        @if length($resolution) > 2 {
+
+          @if length(nth($resolution,3)) > 0 and (nth($resolution,3)) > 0 {
+            $ratio-query: 'and (min-resolution: #{nth($resolution,3)}dppx)';
+            $media-query: append($media-query, $ratio-query, $append-delimiter);
+          }
+
+          @if length($resolution) == 4 and str-length(nth($resolution,4)) > 0 {
+            $alias-query: '; alias: #{nth($resolution,4)}';
+          }
+
+        }
+
+        $media-query-combined: append($media-query-combined, $media-query, comma);
+
+        @if $j == length($device-resolutions) and $dev-content == false {
+
+          @media #{$media-query-combined} {
+
+            @content;
+
+          }
+
+        }
+
+        @if $dev-content == true {
+
+          @media #{$media-query} {
+
+            content: 'target: #{$device-type}; orientation: #{if($orientation == '', 'none', $orientation)}; resolution: @media #{$media-query}#{$alias-query}';
+            @content;
+
+          }
+
+        }
+
+      }
+
+    } @else {
+
+      @error "Device type '#{$value}' doesn't exist in @mixin responsive";
+
+    }
+
+  }
+
+
+}
+
+@mixin mobile {
+  @include responsive('mobile') {
+    @content;
+  }
+}
+
+@mixin mobile_or_tablet_portrait {
+  @include responsive('mt') {
+    @content;
+  }
+}
+
+@mixin tablet {
+  @include responsive('tablet') {
+    @content;
+  }
+}
+
+@mixin responsive_mob_tbp {
+  @include responsive('mobile') {
+    @content;
+  }
+  @include responsive('mt','portrait') {
+    @content;
+  }
+}
+
+@mixin responsive_mobile_landscape {
+  @include responsive('mobile','landscape') {
+    @content;
+  }
+}
+
+
+$psd-width-desktop:1920;
+$psd-width-mobile:1440;
+$photoshop-design-width: 1920;
+
+@function px-to-vw-std($ps-font-size,$multiply:1) {
+  @return (  $multiply * math.div( $ps-font-size, $psd-width-desktop) * 100 ) * 1vw;
+}
+
+@function px-to-vw-mob($ps-font-size,$multiply:1) {
+  @return (  $multiply * math.div( $ps-font-size, $psd-width-mobile) * 100 ) * 1vw;
+}
+
+@function calc-body-font-size-desktop(){
+  @return math.div(38,1920) * 100 * 1vw;
+}
+@function calc-body-font-size-mobile(){
+  @return math.div(40,960) * 100 * 1vw;
+}
+
+@function px-to-rem-std($px-font-size){
+  @return math.div($px-font-size,38) * 1rem;
+}
+
+
+
+
+@mixin font-size-rem-std($px-font-size){
+  font-size: px-to-rem-std($px-font-size);
+  line-height: px-to-rem-std($px-font-size);
+}
+
+@mixin line-height-rem-std($px-font-size){
+  line-height: px-to-rem-std($px-font-size);
+}
+
+@mixin font-size-vw-desktop($ps-font-size,$multiply:1) {
+  font-size: px-to-vw-std($ps-font-size, $multiply);
+}
+@mixin line-height-vw-desktop($ps-font-size,$multiply:1) {
+  line-height: px-to-vw-std($ps-font-size, $multiply);
+}
+
+@mixin font-size-vw-mobile($ps-font-size,$multiply:1) {
+  font-size: px-to-vw-mobile($ps-font-size, $multiply);
+}
+@mixin line-height-vw-mobile($ps-font-size,$multiply:1) {
+  line-height: px-to-vw-mobile($ps-font-size, $multiply);
+}
+
+
+

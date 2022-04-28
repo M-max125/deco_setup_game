@@ -1,0 +1,31 @@
+.customOverlay {
+  //background: rgba(36, 123, 160, 0.7);
+}
+.customModal {
+  //max-width: 500px;
+  width: 100%;
+  padding: 3rem 2rem !important;
+  font-size: 1.3rem;
+  font-family: 'TCCC-UnityHeadline-Black', sans-serif;
+  //color : #fff;
+
+
+}
+.react-responsive-modal-modal{
+  max-width: 800px;
+  margin: 0!important;
+
+ }
+
+
+.content_modal_wrapper{
+
+  text-align: center;
+  white-space: pre-wrap;
+  overflow: auto;
+}
+
+.react-responsive-modal-root{
+  z-index: 9999 !important;
+  padding: 1rem;
+}

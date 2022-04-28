@@ -2,8 +2,14 @@
 
 # dependencies
 /node_modules
-/.pnp
-.pnp.js
+
+# https://yarnpkg.com/getting-started/qa
+.yarn/*
+!.yarn/releases
+!.yarn/plugins
+!.yarn/sdks/*
+!.yarn/versions
+.pnp.*
 
 # testing
 /coverage
@@ -17,6 +23,8 @@
 .env.development.local
 .env.test.local
 .env.production.local
+.idea
+.vscode
 
 npm-debug.log*
 yarn-debug.log*

@@ -1,0 +1,290 @@
+.hide{
+  display: none;
+}
+
+.landing-page {
+  width: 100%;
+  display: block;
+
+
+  .bg-hero-top {
+    width: 100%;
+    position: relative;
+    .registered{
+      @include font-size-vw-desktop(10);
+      @include line-height-vw-desktop(10);
+      font-family: 'TCCC-UnityText-Regular',sans-serif;
+      position: absolute;
+      top: 55%;
+      left :-11%;
+      transform: rotate(270deg);
+    }
+  }
+
+  .bottom-wrapper {
+    width: 100%;
+    display: flex;
+    flex-direction: row;
+    margin-top: -4px;
+    @include responsive() {
+      flex-direction: column;
+    }
+    @include responsive('tablet') {
+      flex-direction: column;
+    }
+
+    .right-side-container {
+      width: 25%;
+      background: #E51E2C;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      @include responsive(){
+        width: 100%;
+
+      }
+      @include responsive('tablet'){
+        width: 100%;
+
+      }
+      .logo-container {
+        width: 80%;
+        @include responsive(){
+          padding: 1rem;
+          width: 60%;
+        }
+        @include responsive('tablet'){
+          padding: 1rem;
+          width: 40%;
+        }
+
+
+      }
+
+
+    }
+
+    .left-side-container {
+      width: 75%;
+      padding: 1.6rem 0 1.6rem 2rem;
+      @include responsive() {
+        width: 100%;
+        padding: 1rem;
+      }
+      @include responsive('tablet') {
+        width: 100%;
+        padding: 1.5rem;
+      }
+
+      .left-area-divider {
+        display: flex;
+        flex-direction: row;
+        @include responsive() {
+          flex-direction: column;
+        }
+        @include responsive('tablet') {
+          flex-direction: column;
+        }
+
+        .description-icons-area {
+          border-right: 2px solid #E51E2C;
+          width: 32.5%;
+          @include responsive() {
+            width: 100%;
+            border-right: none;
+          }
+          @include responsive('tablet') {
+            width: 100%;
+            border-right: none;
+          }
+
+          .icon-box {
+            display: flex;
+            flex-direction: row;
+            align-items: center;
+            margin-bottom: .5rem;
+            //justify-content: space-evenly;
+            width: 100%;
+
+            .image {
+              width: 18%;
+              margin-right: 1.6rem;
+              @include responsive(){
+                width: 15%;
+              }
+              @include responsive('tablet'){
+                width: 12%;
+              }
+            }
+
+            .text {
+              width: 70%;
+              color: #E51F2A;
+              font-family: 'TCCC-UnityHeadline-Black', sans-serif;
+              text-align: center;
+              @include font-size-vw-desktop(20);
+              @include line-height-vw-desktop(20);
+              @include responsive(){
+                font-size: 4vw;
+                line-height: 4vw;
+              }
+              @include responsive('tablet'){
+                font-size: 3vw;
+                line-height: 3vw;
+              }
+
+              &.first {
+                @include font-size-vw-desktop(44);
+                @include line-height-vw-desktop(44);
+                @include responsive(){
+                  font-size: 6vw;
+                }
+                @include responsive('tablet'){
+                  font-size: 5vw;
+                }
+                span {
+                  font-style: italic;
+                }
+
+              }
+            }
+
+          }
+
+          .icon-disclaimer {
+            margin-top: .5rem;
+            font-family: 'TCCC-UnityHeadline-Regular', sans-serif;
+            @include font-size-vw-desktop(18);
+            @include line-height-vw-desktop(18);
+            @include responsive(){
+              font-size: 4vw;
+              line-height: 4vw;
+            }
+            @include responsive('tablet'){
+              font-size: 2.7vw;
+              line-height: 2.7vw;
+            }
+            span {
+              font-family: 'TCCC-UnityHeadline-Black', sans-serif;
+
+            }
+
+            .disclaimer-location {
+              font-style: italic;
+              @include font-size-vw-desktop(14);
+              font-family: 'TCCC-UnityHeadline-Light', sans-serif;
+              @include responsive(){
+                font-size: 3vw;
+              }
+              @include responsive('tablet'){
+                font-size: 2vw;
+              }
+            }
+          }
+
+        }
+
+        .premii-btn-area {
+          width: 67.5%;
+          text-align: center;
+          margin-left: 1rem;
+          margin-right: 1rem;
+
+          @include responsive(){
+            width: 100%;
+            margin-left: 0;
+          }
+          @include responsive('tablet'){
+            width: 100%;
+            margin-left: 0;
+            margin-top: 1.3rem;
+          }
+
+          .premiuContainer {
+            display: flex;
+            flex-direction: row;
+            justify-content: space-around;
+            margin-bottom: 2.5rem;
+
+            @include responsive(){
+              flex-direction: column;
+              justify-content: center;
+              margin-top: 2rem;
+
+            }
+
+
+            .p-box {
+              display: flex;
+              flex-direction: row;
+              align-items: center;
+              @include responsive(){
+                flex-direction: column;
+                justify-content: center;
+
+              }
+              @include responsive('tablet'){
+                flex-direction: column;
+                justify-content: center;
+
+              }
+
+              .img-premiu {
+                width: 60%;
+                @include responsive('tablet'){
+                  width: 100%;
+                }
+              }
+
+              .p-text {
+                @include font-size-vw-desktop(20);
+                @include line-height-vw-desktop(20);
+                color: #E51F2A;
+                font-family: 'TCCC-UnityHeadline-Black', sans-serif;
+                font-weight: bold;
+                text-align: left;
+                &.gp{
+                  margin-left: -.3rem;
+                }
+                @include responsive(){
+                  font-size: 4vw;
+                  line-height: 4vw;
+                }
+                @include responsive('tablet'){
+                  font-size: 2vw;
+                  line-height: 2vw;
+                }
+
+
+              }
+
+            }
+
+
+          }
+
+        }
+      }
+
+      .footer-disclaimer-cmp {
+        margin-top: 2rem;
+        //margin-bottom: .4rem;
+        @include font-size-vw-desktop(14);
+        @include line-height-vw-desktop(14);
+        margin-right: .9rem;
+        @include responsive(){
+          font-size: 3vw;
+          line-height: 3vw;
+          text-align: center;
+        }
+        @include responsive('tablet'){
+          font-size: 1.7vw;
+          line-height: 1.7vw;
+          text-align: justify;
+        }
+      }
+
+
+    }
+  }
+}

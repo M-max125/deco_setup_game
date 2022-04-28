@@ -1,0 +1,88 @@
+.black-btn {
+  background-color: #000;
+  color: #fff;
+  @include font-size-vw-desktop(20);
+  font-family: 'TCCC-UnityHeadline-Black', sans-serif;
+  font-weight: bold;
+  width: 20rem;
+  border: none;
+  outline: none;
+  padding-top: .5rem;
+  padding-bottom: .5rem;
+  border-radius: .4rem;
+  cursor: pointer;
+  @include responsive() {
+    font-size: 4vw;
+    width: 85%;
+  }
+  @include responsive('tablet') {
+    font-size: 3vw;
+    width: 25rem;
+
+  }
+  @include responsive('fullhd') {
+    width: 25rem;
+
+  }
+
+}
+
+.mobhide {
+  @include responsive() {
+    display: none;
+  }
+  @include responsive('tablet') {
+    display: none;
+  }
+}
+
+.ck-magic-footer {
+  width: 100%;
+  background: #E51E2A;
+  vertical-align: bottom;
+
+
+  .ckm-wrapper{
+    display: flex;
+    flex-direction: row;
+    padding: 1.6rem;
+    @include responsive('mt'){
+      flex-direction: column;
+    }
+  }
+  .footer-text{
+    color : #fff;
+    width: 80%;
+    text-align: justify;
+    @include font-size-vw-desktop(14);
+    @include line-height-vw-desktop(14);
+    @include responsive(){
+      font-size: 2.7vw;
+      line-height: 2.7vw;
+      width: 100%;
+    }
+    @include responsive('tablet'){
+      font-size: 1.6vw;
+      line-height: 1.6vw;
+      width: 100%;
+
+    }
+  }
+  .footer-logo{
+    width: 20%;
+    display: flex;
+    justify-content: flex-end;
+    @include responsive('mt'){
+      width: 100%;
+      justify-content: center;
+      margin-top: .5rem;
+    }
+    .ckf-container{
+      width: 50%;
+      @include responsive('tablet'){
+        width: 30%;
+      }
+
+    }
+  }
+}

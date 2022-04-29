@@ -43,15 +43,15 @@
       }
 
       .inputfield{
-        width: 42%;
-        padding: .5rem;
-        border: none;
-        outline: none;
+        width: 42% !important;
+        padding: .5rem !important;
+        border: none !important;
+        outline: none !important;
         background: #E51E2A !important;
-        text-align: center;
-        color : #fff;
-        font-size: 2vw;
-        font-family: 'TCCC-UnityHeadline-Bold', sans-serif;
+        text-align: center !important;
+        color : #fff !important;
+        font-size: 2vw !important;
+        font-family: 'TCCC-UnityHeadline-Bold', sans-serif !important;
         @include responsive('tablet'){
           font-size: 3.5vw;
           width: 70%;

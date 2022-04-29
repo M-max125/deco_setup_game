@@ -5,7 +5,7 @@ import React from "react";
 
 type SDButtonStdProps = {
     text: string | JSX.Element,
-    onClick?: (e: any) => void,
+    onClick?: (e:any) => void,
     className: string,
     loading?: boolean,
     disabled?: boolean

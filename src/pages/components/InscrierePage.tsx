@@ -1,4 +1,4 @@
-import React, {useState} from 'react';
+import React, {useEffect, useState} from 'react';
 import {HomeComponentsProps} from "../../app/types";
 import {SDInputRadioDasauNu} from "../form/SDInputRadioDasauNu";
 import {SDInputForm} from "../form/SDInputForm";
@@ -27,7 +27,9 @@ export const InscrierePage: React.FC<HomeComponentsProps> = (props) => {
         title: '',
         message: ''
     });
-console.log(inputs)
+    const [navigateOnClick,setNavigateOnClick] = useState(false)
+    console.log(navigateOnClick)
+
     const onInputChange = (evt: React.ChangeEvent<HTMLInputElement>) => {
         if (evt.target.name == "telefon") {
             SDInputHandleControlChangeEventWithNameValue(
@@ -50,6 +52,43 @@ console.log(inputs)
             };
         });
     };
+    console.log(inputs)
+
+    useEffect(()=>{
+        if(inputs['varsta_peste_18'] == 1 &&
+            inputs['acord_regulament'] &&
+            (inputs['telefon'].length > 0 && inputs['telefon'].match(/^(07[0-8]{1}[0-9]{1}|02[0-9]{2}|03[0-9]{2})([0-9]{3}){2}$/))){
+            setNavigateOnClick(true)
+        }
+
+    },[inputs])
+
+
+
+    function handleFormInputsAndDisplayModalIfError(){
+        let errors:string[] = []
+        if(inputs['varsta_peste_18'] != 1){
+            errors.push('Confirmarea varstei de 18 ani este obligatorie')
+        }
+        if(inputs['acord_regulament'] != 1){
+            errors.push('Acordul Regulamentului Oficial al Campaniei este obligatoriu')
+        }
+        if(!inputs['telefon']){
+            errors.push('Numărul de telefon este obligatoriu')
+        }
+        if(inputs['telefon'].length > 0 && !inputs['telefon'].match(/^(07[0-8]{1}[0-9]{1}|02[0-9]{2}|03[0-9]{2})([0-9]{3}){2}$/)){
+            errors.push('Numărul de telefon este invalid')
+        }
+        console.log(errors)
+        if (errors.length > 0) {
+            setModal({
+                title: 'Înscrierea nu este validă',
+                message: errors.join('\n'),
+                open: true
+            })
+        }
+    }
+
 
     return <>
         <div className={`${props.isCurrentPage ? 'inscriere-page' : 'no-display'}`}>
@@ -88,35 +127,10 @@ console.log(inputs)
                         <SDButtonStd
                             text='CONTINUĂ'
                             className='black-btn'
-                            onClick={()=>{
-                                let errors:string[] = []
+                             onClick={navigateOnClick ? props.onNext : handleFormInputsAndDisplayModalIfError}
 
-                                if(inputs['varsta_peste_18'] != 1){
-                                    errors.push('Confirmarea varstei de 18 ani este obligatorie')
-                                }
-                                if(inputs['acord_regulament'] != 1){
 
-                                    errors.push('Acordul Regulamentului Oficial al Campaniei este obligatoriu')
-                                }
-                                if(!inputs['telefon']){
-
-                                    errors.push('Numărul de telefon este obligatoriu')
-                                }
-                                if(inputs['telefon'].length > 0 && !inputs['telefon'].match(/^(07[0-8]{1}[0-9]{1}|02[0-9]{2}|03[0-9]{2})([0-9]{3}){2}$/)){
-                                    errors.push('Numărul de telefon este invalid')
-                                }
-
-                                if (errors.length > 0) {
-                                    setModal({
-                                        title: 'Înscrierea nu este validă',
-                                        message: errors.join('\n'),
-                                        open: true
-                                    })
-
-                                }else{
-                                    props.onNext
-                                }
-                                }}/>
+                        />
                     </div>
 
                 </div>

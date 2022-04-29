@@ -1,3 +1,4 @@
+import React from "react";
 
 export enum HomeComponents{
     isLandingPage,
@@ -6,7 +7,7 @@ export enum HomeComponents{
     isApplicationPage
 }
 export type HomeComponentsProps = {
-    onNext : (e:any)=> void,
+    onNext : React.Dispatch<React.SetStateAction<any>>,
     isCurrentPage: boolean
 }
 

@@ -56,7 +56,7 @@ export enum AfisareSelectieMixDePaste{
     Pattern5
 }
 export enum AfisareSelectieNumarDePersoane{
-    None,
+    None ,
     Person1,
     Person2,
     Person3,

@@ -93,7 +93,7 @@
       height: 100%;
       position: relative;
       @include responsive('fullhd'){
-        width: 48%;
+        width: 50%;
       }
       @include responsive('tablet'){
         width: 70%;
@@ -101,7 +101,7 @@
       .fdm-pattern{
         position: absolute;
         bottom:0;
-        right: -2.5%;
+        //right: -2.5%;
         z-index: 1;
         @include responsive('fullhd'){
           bottom:0;

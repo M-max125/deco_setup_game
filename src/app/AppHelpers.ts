@@ -1,4 +1,4 @@
-import {HeaderCategoryProps} from "./types";
+
 
 
 export default class AppHelpers {

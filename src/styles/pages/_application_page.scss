@@ -101,7 +101,7 @@
       .fdm-pattern{
         position: absolute;
         bottom:0;
-        //right: -2.5%;
+        right: -2.5%;
         z-index: 1;
         @include responsive('fullhd'){
           bottom:0;

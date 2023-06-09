@@ -28,8 +28,8 @@ export const categories: HeaderCategoryProps[] = [
     },
     {
         id: 6,
-        img: 'mix_paste.png',
-        img_glow: 'mix_paste_glow.png'
+        img: 'mix_buchete.png',
+        img_glow: 'mix_buchete_glow.png'
     },
     {
         id: 7,
@@ -185,28 +185,28 @@ export const elemente_selectie_pahare: HeaderCategoryProps[] = [
 export const elemente_selectie_mix_paste: HeaderCategoryProps[] = [
     {
         id: 1,
-        img: 'images/ELEMENTE/mix_paste/01.png',
-        img_glow: 'images/ELEMENTE_SELECTIE/mix_paste/01.png'
+        img: 'images/ELEMENTE/mix_buchete/01.png',
+        img_glow: 'images/ELEMENTE_SELECTIE/mix_buchete/01.png'
     },
     {
         id: 2,
-        img: 'images/ELEMENTE/mix_paste/02.png',
-        img_glow: 'images/ELEMENTE_SELECTIE/mix_paste/02.png'
+        img: 'images/ELEMENTE/mix_buchete/02.png',
+        img_glow: 'images/ELEMENTE_SELECTIE/mix_buchete/02.png'
     },
     {
         id: 3,
-        img: 'images/ELEMENTE/mix_paste/03.png',
-        img_glow: 'images/ELEMENTE_SELECTIE/mix_paste/03.png'
+        img: 'images/ELEMENTE/mix_buchete/03.png',
+        img_glow: 'images/ELEMENTE_SELECTIE/mix_buchete/03.png'
     },
     {
         id: 4,
-        img: 'images/ELEMENTE/mix_paste/04.png',
-        img_glow: 'images/ELEMENTE_SELECTIE/mix_paste/04.png'
+        img: 'images/ELEMENTE/mix_buchete/04.png',
+        img_glow: 'images/ELEMENTE_SELECTIE/mix_buchete/04.png'
     },
     {
         id: 5,
-        img: 'images/ELEMENTE/mix_paste/05.png',
-        img_glow: 'images/ELEMENTE_SELECTIE/mix_paste/05.png'
+        img: 'images/ELEMENTE/mix_buchete/05.png',
+        img_glow: 'images/ELEMENTE_SELECTIE/mix_buchete/05.png'
     },
 
 ]
@@ -245,11 +245,11 @@ export const fete_de_masa = ['images/DETALII/fata_de_masa/01.png',
     'images/DETALII/fata_de_masa/04.png',
     'images/DETALII/fata_de_masa/05.png']
 
-export const mix_de_paste = ['images/DETALII/mix_paste/01.png',
-    'images/DETALII/mix_paste/02.png',
-    'images/DETALII/mix_paste/03.png',
-    'images/DETALII/mix_paste/04.png',
-    'images/DETALII/mix_paste/05.png']
+export const mix_de_paste = ['images/DETALII/mix_buchete/01.png',
+    'images/DETALII/mix_buchete/02.png',
+    'images/DETALII/mix_buchete/03.png',
+    'images/DETALII/mix_buchete/04.png',
+    'images/DETALII/mix_buchete/05.png']
 export const numar_de_persoane_farfurii = ['images/DETALII/numar_persoane/01.png',
     'images/DETALII/numar_persoane/02.png',
     'images/DETALII/numar_persoane/03.png',

@@ -1,14 +1,7 @@
-import React from 'react';
-import {CokeEasterHomePage} from "../pages/CokeEasterHomePage";
-
-
+import { ApplicationGamePage } from "../pages/components/ApplicationGamePage";
 
 function App() {
-  return (
-
-   <CokeEasterHomePage/>
-
-  );
+  return <ApplicationGamePage />;
 }
 
 export default App;

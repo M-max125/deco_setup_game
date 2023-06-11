@@ -4,6 +4,7 @@
 
 .application-page {
   width: 100%;
+  position: relative;
 
   .header-categories {
     background: #2f60a9;
@@ -112,6 +113,13 @@
       width: 52%;
       height: 100%;
       position: relative;
+      pointer-events: none;
+      &.tbl-mb-bottom{
+        margin-bottom: 4.7rem;
+        @include mobile{
+          margin-bottom: 1rem;
+        }
+      }
 
       @include responsive("mobile") {
         width: 90%;
@@ -169,11 +177,5 @@
         z-index: 3;
       }
     }
-  }
-
-  .wh-btn-area {
-    padding: 2.5rem;
-    width: 100%;
-    text-align: center;
   }
 }
